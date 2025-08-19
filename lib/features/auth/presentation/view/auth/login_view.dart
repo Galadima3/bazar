@@ -1,7 +1,6 @@
 import 'dart:developer';
-
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/core/utils/form_validator.dart';
-import 'package:bazar/features/auth/presentation/view/password/password_recovery.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_footer_text.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
@@ -9,7 +8,9 @@ import 'package:bazar/features/auth/presentation/widgets/or_divider.dart';
 import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/social_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,6 +27,11 @@ class _LoginViewState extends State<LoginView> {
   final isPasswordVisibleProvider = StateProvider<bool>((ref) {
     return false;
   });
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove(); // remove splash here too
+  }
   @override
   void dispose() {
     emailController.dispose();
@@ -91,11 +97,12 @@ class _LoginViewState extends State<LoginView> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PasswordRecoveryView(),
-                      ),
-                    ),
+                    onPressed: () => context.push(RoutePaths.passwordRecoveryView),
+                    // onPressed: () => Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => PasswordRecoveryView(),
+                    //   ),
+                    // ),
                     child: Text(
                       "Forgot Password?",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(

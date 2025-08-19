@@ -1,4 +1,3 @@
-import 'package:bazar/main.dart';
 import 'package:bazar/features/onboarding/view/intro_screen.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ void main() {
 
   group('MyApp startup tests', () {
     testWidgets('should render OnboardingScreen when hasSeenOnboarding is true', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      // await tester.pumpWidget(const MyApp(router: GoRouter(),));
 
       expect(find.byType(OnboardingScreen), findsOneWidget);
     });

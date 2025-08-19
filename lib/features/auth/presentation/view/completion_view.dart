@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 /// Displays Completion status for Registration || Password Reset
 class CompletionView extends StatelessWidget {
@@ -49,6 +51,7 @@ class CompletionView extends StatelessWidget {
                 buttonText: isPasswordReset ? "Login" : 'Get Started',
                 onTap: () {
                   log('Get Started button pressed!');
+                  context.go(RoutePaths.login);
                 },
               ),
             ],

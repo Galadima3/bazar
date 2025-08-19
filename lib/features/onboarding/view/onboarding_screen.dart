@@ -1,5 +1,6 @@
 import 'package:bazar/features/onboarding/view/intro_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -10,6 +11,11 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove(); // 👈 remove splash here
+  }
   final PageController controller = PageController();
   static const int count = 3;
   bool onLastPage = false;

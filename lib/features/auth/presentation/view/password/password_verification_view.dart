@@ -1,10 +1,10 @@
 import 'dart:developer';
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/features/auth/model/reset_method.dart';
-import 'package:bazar/features/auth/presentation/view/password/new_password_view.dart';
-
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 /// Conditional Password Verification View
 /// It continues the password reset flow by allowing users verify OTP sent to email or Phone number
@@ -93,9 +93,10 @@ class _PasswordVerificationViewState
               FocusScope.of(context).unfocus();
               String otp = _getOtp(); // Get the combined OTP here
               log('Entered OTP: $otp');
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => NewPasswordView()),
-              );
+              context.push(RoutePaths.newPassWordView);
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(builder: (context) => NewPasswordView()),
+              // );
             },
           ),
         ],

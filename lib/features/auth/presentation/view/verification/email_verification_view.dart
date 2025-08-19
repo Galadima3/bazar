@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:bazar/core/themes/app_colors.dart';
 import 'package:bazar/features/auth/presentation/view/verification/phone_input_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+
 /// Verify Email During Registration
 class EmailVerificationView extends StatefulWidget {
   const EmailVerificationView({super.key});
@@ -40,7 +42,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(color: Colors.black,),
+        leading: const BackButton(color: Colors.black),
         elevation: 0,
         //backgroundColor: Colors.transparent,
       ),
@@ -52,19 +54,18 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
             Center(
               child: Column(
                 children: [
-                  Text(
-                    "Email Verification",
-                    style: textTheme.displaySmall
-                    
-                  ),
+                  Text("Email Verification", style: textTheme.displaySmall),
                   Text(
                     "Please enter the code we just sent to email",
-                    style: textTheme.bodyMedium?.copyWith(color: Colors.grey.shade500),
-                    
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: Colors.grey.shade500,
+                    ),
                   ),
                   Text(
                     "Johndoe@gmail.com",
-                    style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -72,7 +73,12 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
 
             // OTP Field
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 40, bottom: 24),
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16,
+                top: 40,
+                bottom: 24,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(4, (index) {
@@ -93,8 +99,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
                   child: const Text(
                     "Resend",
                     style: TextStyle(
-                      //TODO: Remove hardcoded colors
-                      color: Color(0xff564290),
+                      color: AppColors.primary500,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -110,9 +115,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
                 String otp = _getOtp(); // Get the combined OTP here
                 log('Entered OTP: $otp');
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => PhoneInputView(),
-                  ),
+                  MaterialPageRoute(builder: (context) => PhoneInputView()),
                 );
               },
             ),
@@ -151,5 +154,3 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
     );
   }
 }
-
-

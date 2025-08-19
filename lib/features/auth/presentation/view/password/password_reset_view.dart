@@ -1,15 +1,15 @@
 import 'dart:developer';
 
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/core/utils/form_validator.dart';
 import 'package:bazar/features/auth/model/reset_method.dart';
-import 'package:bazar/features/auth/presentation/view/password/password_verification_view.dart';
-
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 
@@ -41,22 +41,26 @@ class _PasswordResetViewState extends ConsumerState<PasswordResetView> {
     FocusScope.of(context).unfocus();
     if (_phoneNumber == null || _phoneNumber!.isEmpty) return;
     final user = ResetMethod(type: 2, value: _phoneNumber!);
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => PasswordVerificationView(userDetails: user),
-      ),
-    );
+    context.push(RoutePaths.passwordVerificationView,
+    extra: user);
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => PasswordVerificationView(userDetails: user),
+    //   ),
+    // );
   }
 
   Future<void> _emailPasswordReset() async {
     FocusScope.of(context).unfocus();
     if (_emailController.text.isEmpty) return;
     final user = ResetMethod(type: 1, value: _emailController.text);
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => PasswordVerificationView(userDetails: user),
-      ),
-    );
+    context.push(RoutePaths.passwordVerificationView,
+    extra: user);
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => PasswordVerificationView(userDetails: user),
+    //   ),
+    // );
   }
 
   @override
@@ -79,22 +83,25 @@ class _PasswordResetViewState extends ConsumerState<PasswordResetView> {
                   keyboardType: TextInputType.emailAddress,
                   validator: FormValidators.validateEmail,
                 )
-              : IntlPhoneField(
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(CupertinoIcons.phone),
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(borderSide: BorderSide()),
+              : SizedBox(
+                width: 320,
+                child: IntlPhoneField(
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(CupertinoIcons.phone),
+                      labelText: 'Phone Number',
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                    initialCountryCode: 'NG',
+                    onChanged: (phone) {
+                      log(phone.completeNumber);
+                
+                      // 2. Store the complete number in your state variable
+                      setState(() {
+                        _phoneNumber = phone.completeNumber;
+                      });
+                    },
                   ),
-                  initialCountryCode: 'NG',
-                  onChanged: (phone) {
-                    log(phone.completeNumber);
-
-                    // 2. Store the complete number in your state variable
-                    setState(() {
-                      _phoneNumber = phone.completeNumber;
-                    });
-                  },
-                ),
+              ),
           SizedBox(height: 24),
           CustomButton(
             buttonText: "Send",

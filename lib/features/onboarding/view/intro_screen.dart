@@ -1,5 +1,6 @@
-import 'package:bazar/features/auth/presentation/view/auth/login_view.dart';
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class IntroScreen extends StatelessWidget {
   final String text;
@@ -44,10 +45,6 @@ class IntroScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 68),
-
-            //TODO: Werey
-            //const Spacer(),
-
             // Continue Button
             SizedBox(
               width: 327,
@@ -68,9 +65,7 @@ class IntroScreen extends StatelessWidget {
               width: 327,
               height: 56,
               child: OutlinedButton(
-                onPressed: () => Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (context) => LoginView())),
+                onPressed: () => context.push(RoutePaths.login),
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Color(0xff564290)),
                   shape: RoundedRectangleBorder(
@@ -79,7 +74,9 @@ class IntroScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Sign in",
-                  style: textTheme.headlineSmall?.copyWith(color: Color(0xff564290)),
+                  style: textTheme.headlineSmall?.copyWith(
+                    color: Color(0xff564290),
+                  ),
                 ),
               ),
             ),

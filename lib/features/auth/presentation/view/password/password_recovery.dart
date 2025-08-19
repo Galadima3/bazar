@@ -1,9 +1,10 @@
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/core/themes/app_colors.dart';
-import 'package:bazar/features/auth/presentation/view/password/password_reset_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 /// Password Reset flow starts here
 /// User decides to reset password based on Email or Phone Number 
 class PasswordRecoveryView extends ConsumerStatefulWidget {
@@ -59,12 +60,13 @@ class _PasswordRecoveryViewState extends ConsumerState<PasswordRecoveryView> {
             buttonText: "Continue",
             onTap: () {
               if (_selectedOption == 0) return;
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      PasswordResetView(value: _selectedOption),
-                ),
-              );
+              context.push("${RoutePaths.passwordResetViewBase}/$_selectedOption");
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) =>
+              //         PasswordResetView(value: _selectedOption),
+              //   ),
+              // );
             },
           ),
         ],

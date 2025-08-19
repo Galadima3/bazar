@@ -1,9 +1,10 @@
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/core/themes/app_colors.dart';
 import 'package:bazar/core/utils/form_validator.dart';
-import 'package:bazar/features/auth/presentation/view/completion_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 /// User Enters New Password here
 
@@ -110,11 +111,12 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                           content: Text('Password updated successfully!'),
                         ),
                       );
+                      context.push(RoutePaths.completionView, extra: true);
 
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            CompletionView(isPasswordReset: true),
-                      ));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //   builder: (context) =>
+                      //       CompletionView(isPasswordReset: true),
+                      // ));
                     }
                   },
                   style: ElevatedButton.styleFrom(
