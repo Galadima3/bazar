@@ -1,24 +1,29 @@
 import 'dart:developer';
 import 'package:bazar/features/auth/model/reset_method.dart';
-import 'package:bazar/features/auth/presentation/view/new_password_input_view.dart';
+import 'package:bazar/features/auth/presentation/view/password/new_password_view.dart';
+
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ConditionalPasswordVerificationView extends ConsumerStatefulWidget {
+/// Conditional Password Verification View
+/// It continues the password reset flow by allowing users verify OTP sent to email or Phone number
+///
+
+class PasswordVerificationView extends ConsumerStatefulWidget {
   final ResetMethod userDetails;
-  const ConditionalPasswordVerificationView({
+  const PasswordVerificationView({
     super.key,
     required this.userDetails,
   });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ConditionalPasswordVerificationViewState();
+      _PasswordVerificationViewState();
 }
 
-class _ConditionalPasswordVerificationViewState
-    extends ConsumerState<ConditionalPasswordVerificationView> {
+class _PasswordVerificationViewState
+    extends ConsumerState<PasswordVerificationView> {
   final List<TextEditingController> _controllers = List.generate(
     4,
     (_) => TextEditingController(),
@@ -53,7 +58,6 @@ class _ConditionalPasswordVerificationViewState
                 ? Email(emailAddress: widget.userDetails.value)
                 : Phone(phoneNumber: widget.userDetails.value),
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -72,26 +76,25 @@ class _ConditionalPasswordVerificationViewState
               ),
             ],
           ),
-          
-           Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 40, bottom: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List.generate(4, (index) {
-                  return buildOtpField(index);
-                }),
-              ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, right: 16.0, top: 40, bottom: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(4, (index) {
+                return buildOtpField(index);
+              }),
             ),
-
+          ),
           // continue button
           CustomButton(
             buttonText: 'Continue',
             onTap: () {
-                FocusScope.of(context).unfocus(); 
+              FocusScope.of(context).unfocus();
               String otp = _getOtp(); // Get the combined OTP here
               log('Entered OTP: $otp');
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => NewPasswordInputView()),
+                MaterialPageRoute(builder: (context) => NewPasswordView()),
               );
             },
           ),
@@ -99,6 +102,7 @@ class _ConditionalPasswordVerificationViewState
       ),
     );
   }
+
   Widget buildOtpField(int index) {
     return SizedBox(
       width: 50,
@@ -173,5 +177,4 @@ class Email extends StatelessWidget {
       ],
     );
   }
-  
 }

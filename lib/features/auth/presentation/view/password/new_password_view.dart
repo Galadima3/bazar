@@ -5,14 +5,16 @@ import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dar
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:flutter/material.dart';
 
-class NewPasswordInputView extends StatefulWidget {
-  const NewPasswordInputView({super.key});
+/// User Enters New Password here
+
+class NewPasswordView extends StatefulWidget {
+  const NewPasswordView({super.key});
 
   @override
-  State<NewPasswordInputView> createState() => _NewPasswordInputViewState();
+  State<NewPasswordView> createState() => _NewPasswordViewState();
 }
 
-class _NewPasswordInputViewState extends State<NewPasswordInputView> {
+class _NewPasswordViewState extends State<NewPasswordView> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   bool isVisible = false;
@@ -35,7 +37,6 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
               SizedBox(
                 height: 24,
               ),
-          
               LabeledTextField(
                 label: "Password",
                 hint: "Create a password",
@@ -50,10 +51,8 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
                     setState(() {
                       isVisible = !isVisible;
                     });
-                  
                   },
                 ),
-                
                 validator: FormValidators.validatePassword,
               ),
               Padding(
@@ -62,7 +61,8 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
                   children: [
                     _inlineHint("8+ chars", passwordController.text.length >= 8),
                     const SizedBox(width: 12),
-                    _inlineHint("Number", passwordController.text.contains(RegExp(r'[0-9]'))),
+                    _inlineHint(
+                        "Number", passwordController.text.contains(RegExp(r'[0-9]'))),
                     const SizedBox(width: 12),
                     _inlineHint(
                       "Letter",
@@ -71,9 +71,7 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
                   ],
                 ),
               ),
-          
               const SizedBox(height: 24),
-          
               // Confirm Password Field
               LabeledTextField(
                 label: "Confirm Password",
@@ -101,7 +99,6 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
               SizedBox(
                 height: 31,
               ),
-          
               SizedBox(
                 width: 327,
                 child: ElevatedButton(
@@ -114,7 +111,10 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
                         ),
                       );
 
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => CompletionView(isPasswordReset: true),));
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            CompletionView(isPasswordReset: true),
+                      ));
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -140,6 +140,7 @@ class _NewPasswordInputViewState extends State<NewPasswordInputView> {
       ),
     );
   }
+
   Widget _inlineHint(String text, bool isValid) {
     return Row(
       mainAxisSize: MainAxisSize.min,

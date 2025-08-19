@@ -1,16 +1,17 @@
 import 'dart:developer';
-import 'package:bazar/features/auth/presentation/view/completion_view.dart';
+
+import 'package:bazar/features/auth/presentation/view/verification/phone_input_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-
-class PhoneVerificationView extends StatefulWidget {
-  const PhoneVerificationView({super.key});
+/// Verify Email During Registration
+class EmailVerificationView extends StatefulWidget {
+  const EmailVerificationView({super.key});
 
   @override
-  State<PhoneVerificationView> createState() => _PhoneVerificationViewState();
+  State<EmailVerificationView> createState() => _EmailVerificationViewState();
 }
 
-class _PhoneVerificationViewState extends State<PhoneVerificationView> {
+class _EmailVerificationViewState extends State<EmailVerificationView> {
   final List<TextEditingController> _controllers = List.generate(
     4,
     (_) => TextEditingController(),
@@ -36,11 +37,12 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(color: Colors.black,),
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        //backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -51,17 +53,18 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
               child: Column(
                 children: [
                   Text(
-                    "Phone Verification",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    "Email Verification",
+                    style: textTheme.displaySmall
+                    
                   ),
                   Text(
-                    "Please enter the code sent to this phone number:",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey.shade500),
+                    "Please enter the code we just sent to email",
+                    style: textTheme.bodyMedium?.copyWith(color: Colors.grey.shade500),
+                    
                   ),
                   Text(
-                    "(+20) 123477092 299",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    "Johndoe@gmail.com",
+                    style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -69,7 +72,7 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
 
             // OTP Field
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 40, bottom: 24),
+              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 40, bottom: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(4, (index) {
@@ -90,6 +93,7 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
                   child: const Text(
                     "Resend",
                     style: TextStyle(
+                      //TODO: Remove hardcoded colors
                       color: Color(0xff564290),
                       fontWeight: FontWeight.bold,
                     ),
@@ -107,7 +111,7 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
                 log('Entered OTP: $otp');
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => CompletionView(isPasswordReset: false,),
+                    builder: (context) => PhoneInputView(),
                   ),
                 );
               },
@@ -147,4 +151,5 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
     );
   }
 }
+
 

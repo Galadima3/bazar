@@ -1,16 +1,15 @@
 import 'dart:developer';
 
 import 'package:bazar/core/utils/form_validator.dart';
-import 'package:bazar/features/auth/presentation/view/forgot_password_view.dart';
+import 'package:bazar/features/auth/presentation/view/password/password_recovery.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_footer_text.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:bazar/features/auth/presentation/widgets/or_divider.dart';
-import 'package:bazar/features/auth/presentation/view/sign_up_view.dart';
+import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -92,7 +91,11 @@ class _LoginViewState extends State<LoginView> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgotPasswordView(),)),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PasswordRecoveryView(),
+                      ),
+                    ),
                     child: Text(
                       "Forgot Password?",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -103,9 +106,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 24,
-              ),
+              SizedBox(height: 24),
 
               // Login button
               SizedBox(
@@ -145,8 +146,7 @@ class _LoginViewState extends State<LoginView> {
 
               // alt sign in
               SocialButton(
-               
-               assetPath: "google",
+                assetPath: "google",
                 label: 'Sign in with Google',
                 onTap: () {},
               ),

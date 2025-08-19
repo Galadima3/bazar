@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:bazar/core/utils/form_validator.dart';
 import 'package:bazar/features/auth/model/reset_method.dart';
-import 'package:bazar/features/auth/presentation/view/conditional_password_verification_view.dart';
+import 'package:bazar/features/auth/presentation/view/password/password_verification_view.dart';
+
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
@@ -11,19 +12,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
+
+/// Conditional Password Reset View
+/// It initiates the password reset flow by sending OTP to either Email or Phone Number
+///
 /// Value 1 = Email & Value 2 = Phone Number
 
-class ConditionalPasswordResetView extends ConsumerStatefulWidget {
+class PasswordResetView extends ConsumerStatefulWidget {
   final int value;
-  const ConditionalPasswordResetView({super.key, required this.value});
+  const PasswordResetView({super.key, required this.value});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ConditionalPasswordResetViewState();
+      _PasswordResetViewState();
 }
 
-class _ConditionalPasswordResetViewState
-    extends ConsumerState<ConditionalPasswordResetView> {
+class _PasswordResetViewState extends ConsumerState<PasswordResetView> {
   String? _phoneNumber;
   final _emailController = TextEditingController();
 
@@ -36,24 +40,21 @@ class _ConditionalPasswordResetViewState
   Future<void> _phonePasswordReset() async {
     FocusScope.of(context).unfocus();
     if (_phoneNumber == null || _phoneNumber!.isEmpty) return;
-    // final user = [2, _phoneNumber];
     final user = ResetMethod(type: 2, value: _phoneNumber!);
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) =>
-            ConditionalPasswordVerificationView(userDetails: user),
+        builder: (context) => PasswordVerificationView(userDetails: user),
       ),
     );
   }
 
   Future<void> _emailPasswordReset() async {
-      FocusScope.of(context).unfocus(); 
+    FocusScope.of(context).unfocus();
     if (_emailController.text.isEmpty) return;
     final user = ResetMethod(type: 1, value: _emailController.text);
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) =>
-            ConditionalPasswordVerificationView(userDetails: user),
+        builder: (context) => PasswordVerificationView(userDetails: user),
       ),
     );
   }
@@ -67,10 +68,9 @@ class _ConditionalPasswordResetViewState
           AuthSectionHeader(
             title: "Password Reset",
             subtitle: widget.value == 1
-                ? "Please enter your email, we will send verification code to your email."
+                ? "Please enter your email, we will send a verification code to your email."
                 : "Please enter your phone number, we will send a verification code to your phone number.",
           ),
-
           widget.value == 1
               ? LabeledTextField(
                   label: "Email",

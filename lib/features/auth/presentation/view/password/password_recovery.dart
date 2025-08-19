@@ -1,18 +1,19 @@
 import 'package:bazar/core/themes/app_colors.dart';
-import 'package:bazar/features/auth/presentation/view/conditional_password_reset_view.dart';
+import 'package:bazar/features/auth/presentation/view/password/password_reset_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-class ForgotPasswordView extends ConsumerStatefulWidget {
-  const ForgotPasswordView({super.key});
+/// Password Reset flow starts here
+/// User decides to reset password based on Email or Phone Number 
+class PasswordRecoveryView extends ConsumerStatefulWidget {
+  const PasswordRecoveryView({super.key});
 
   @override
-  ConsumerState<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+  ConsumerState<PasswordRecoveryView> createState() => _PasswordRecoveryViewState();
 }
 
-class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
+class _PasswordRecoveryViewState extends ConsumerState<PasswordRecoveryView> {
   // 0: none, 1: Email, 2: Phone Number
   int _selectedOption = 0;
 
@@ -61,7 +62,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      ConditionalPasswordResetView(value: _selectedOption),
+                      PasswordResetView(value: _selectedOption),
                 ),
               );
             },
@@ -106,18 +107,17 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
             Text(
               title,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: isSelected ? AppColors.primary500 : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+                    color: isSelected ? AppColors.primary500 : Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 4),
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isSelected ? const Color(0xFF673AB7) : Colors.grey,
-              ),
-
+                    color: isSelected ? const Color(0xFF673AB7) : Colors.grey,
+                  ),
               textAlign: TextAlign.start,
             ),
           ],

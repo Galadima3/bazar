@@ -1,5 +1,5 @@
 import 'package:bazar/core/utils/form_validator.dart';
-import 'package:bazar/features/auth/presentation/view/email_verification_view.dart';
+import 'package:bazar/features/auth/presentation/view/verification/email_verification_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_footer_text.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';

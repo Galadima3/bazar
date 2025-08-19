@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:bazar/features/auth/presentation/view/phone_verification_view.dart';
+import 'package:bazar/features/auth/presentation/view/verification/phone_verification_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,6 @@ class _PhoneInputViewState extends State<PhoneInputView> {
       appBar: AppBar(
         leading: const BackButton(color: Colors.black),
         elevation: 0,
-        //backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -62,9 +61,7 @@ class _PhoneInputViewState extends State<PhoneInputView> {
                 });
               },
             ),
-            SizedBox(
-              height: 81,
-            ),
+            SizedBox(height: 81),
 
             //Button
             CustomButton(

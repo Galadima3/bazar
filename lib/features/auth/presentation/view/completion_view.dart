@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
+/// Displays Completion status for Registration || Password Reset
 class CompletionView extends StatelessWidget {
   final bool isPasswordReset;
   const CompletionView({super.key, required this.isPasswordReset});
