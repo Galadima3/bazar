@@ -1,3 +1,5 @@
+
+
 import 'package:bazar/core/routing/app_router.dart';
 import 'package:bazar/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   final router = await AppRouter.create();
+
+  FlutterNativeSplash.remove();
 
   runApp(ProviderScope(child: MyApp(router: router)));
 }

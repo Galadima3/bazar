@@ -1,4 +1,5 @@
 import 'package:bazar/core/routing/route_paths.dart';
+import 'package:bazar/core/routing/scaffold_with_navbar.dart';
 import 'package:bazar/features/auth/model/reset_method.dart';
 import 'package:bazar/features/auth/presentation/view/auth/login_view.dart';
 import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
@@ -11,9 +12,13 @@ import 'package:bazar/features/auth/presentation/view/verification/email_verific
 import 'package:bazar/features/auth/presentation/view/verification/phone_input_view.dart';
 import 'package:bazar/features/auth/presentation/view/verification/phone_verification_view.dart';
 import 'package:bazar/features/auth/service/auth_controller.dart';
-import 'package:bazar/features/home/presentation/home_screen.dart';
+import 'package:bazar/features/auth/service/auth_service.dart';
+import 'package:bazar/features/cart/cart_view.dart';
+import 'package:bazar/features/category/category_view.dart';
+import 'package:bazar/features/home/presentation/view/home_view.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
+import 'package:bazar/features/profile/profile_view.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -21,21 +26,95 @@ class AppRouter {
     final seen = await OnboardingService.hasSeenOnboarding();
 
     return GoRouter(
-      initialLocation: seen ? RoutePaths.authController : RoutePaths.onboarding,
+      initialLocation: seen ? RoutePaths.home : RoutePaths.onboarding,
+      redirect: (context, state) async {
+        final isLoggedIn = await AuthService.checkUserAuthStatus();
+        final currentPath = state.matchedLocation;
+        
+        // If onboarding hasn't been seen, redirect to onboarding
+        if (!seen && currentPath != RoutePaths.onboarding) {
+          return RoutePaths.onboarding;
+        }
+        
+        // Define paths that require authentication (main app routes)
+        final protectedPaths = [
+          RoutePaths.home,
+          RoutePaths.category,
+          RoutePaths.cart,
+          RoutePaths.profile,
+        ];
+        
+        // Only redirect to login if onboarding has been seen AND user is not logged in
+        if (seen && !isLoggedIn && protectedPaths.contains(currentPath)) {
+          return RoutePaths.login;
+        }
+        
+        // If user is logged in and on login page, redirect to home
+        if (isLoggedIn && currentPath == RoutePaths.login) {
+          return RoutePaths.home;
+        }
+        
+        return null; // No redirect needed
+      },
       routes: [
-        // Home
-        GoRoute(
-          path: RoutePaths.home,
-          builder: (context, state) => const HomeScreen(),
+        /// ====== Main App Shell (with BottomNav) ======
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return ScaffoldWithNavBar(navigationShell: navigationShell);
+          },
+          branches: [
+            // Home Branch
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: RoutePaths.home,
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: HomeScreen(),
+                  ),
+                ),
+              ],
+            ),
+            // Category Branch
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: RoutePaths.category,
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: CategoryView(),
+                  ),
+                ),
+              ],
+            ),
+            // Cart Branch
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: RoutePaths.cart,
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: CartView(), // You'll need to create this
+                  ),
+                ),
+              ],
+            ),
+            // Profile Branch
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: RoutePaths.profile,
+                  pageBuilder: (context, state) => const NoTransitionPage(
+                    child: ProfileView(),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
 
-        // Onboarding
+        /// ====== Authentication Routes (Outside Shell) ======
         GoRoute(
           path: RoutePaths.onboarding,
           builder: (context, state) => const OnboardingScreen(),
         ),
-
-        // Auth
         GoRoute(
           path: RoutePaths.authController,
           builder: (context, state) => const AuthController(),
@@ -61,7 +140,7 @@ class AppRouter {
           builder: (context, state) => const PhoneVerificationView(),
         ),
 
-        // Password flows
+        /// ====== Password Recovery Routes ======
         GoRoute(
           path: RoutePaths.passwordRecoveryView,
           builder: (context, state) => const PasswordRecoveryView(),
@@ -85,7 +164,7 @@ class AppRouter {
           },
         ),
 
-        // Completion View
+        /// ====== Completion View ======
         GoRoute(
           path: RoutePaths.completionView,
           builder: (context, state) {
@@ -97,3 +176,5 @@ class AppRouter {
     );
   }
 }
+
+// Placeholder CartView - you'll need to create this

@@ -1,6 +1,6 @@
 import 'package:bazar/features/auth/presentation/view/auth/login_view.dart';
 import 'package:bazar/features/auth/service/auth_service.dart';
-import 'package:bazar/features/home/presentation/home_screen.dart';
+import 'package:bazar/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 

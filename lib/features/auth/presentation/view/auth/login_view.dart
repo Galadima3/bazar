@@ -7,6 +7,7 @@ import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart'
 import 'package:bazar/features/auth/presentation/widgets/or_divider.dart';
 import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/social_button.dart';
+import 'package:bazar/features/auth/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,12 +27,7 @@ class _LoginViewState extends State<LoginView> {
   final isPasswordVisibleProvider = StateProvider<bool>((ref) {
     return false;
   });
-  @override
-  void initState() {
-    super.initState();
-    //TODO: Observe this 
-    //FlutterNativeSplash.remove(); // remove splash here too
-  }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -97,7 +93,8 @@ class _LoginViewState extends State<LoginView> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
-                    onPressed: () => context.push(RoutePaths.passwordRecoveryView),
+                    onPressed: () =>
+                        context.push(RoutePaths.passwordRecoveryView),
                     // onPressed: () => Navigator.of(context).push(
                     //   MaterialPageRoute(
                     //     builder: (context) => PasswordRecoveryView(),
@@ -120,12 +117,16 @@ class _LoginViewState extends State<LoginView> {
                 height: 48,
                 width: 327,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // All validators passed ✅
                       log(
                         "Email: ${emailController.text} & Password: ${passwordController.text}",
                       );
+                      await AuthService.setUserAuthstatus();
+                      if(!context.mounted) {
+                        return;
+                      }
                       context.pushReplacement(RoutePaths.home);
                     } else {
                       // Some field failed ❌

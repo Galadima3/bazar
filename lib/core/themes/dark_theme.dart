@@ -10,6 +10,8 @@ class DarkTheme {
       scaffoldBackgroundColor: scheme.surface,
       appBarTheme: AppSharedTheme.appBar(scheme),
       textTheme: AppTextTheme.textTheme(scheme),
+      // navigationBarTheme: AppSharedTheme.navigationBar(scheme),
+      bottomNavigationBarTheme: AppSharedTheme.bottomNavigationBar(scheme),
       elevatedButtonTheme: AppSharedTheme.elevatedButton(scheme),
       cardTheme: AppSharedTheme.card(scheme),
       inputDecorationTheme: AppSharedTheme.input(scheme),

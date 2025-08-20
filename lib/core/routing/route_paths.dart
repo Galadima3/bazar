@@ -14,5 +14,9 @@ class RoutePaths {
   static String passwordVerificationView = '/passwordVerificationView';
   static String newPassWordView = '/newPasswordView';
   static String completionView = "/completionView";
+
+  static String category= '/category';
+  static String cart = '/cart';
+  static String profile = '/profile';
   
 }
