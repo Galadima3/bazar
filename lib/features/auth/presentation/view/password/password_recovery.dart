@@ -22,7 +22,7 @@ class _PasswordRecoveryViewState extends ConsumerState<PasswordRecoveryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
         toolbarHeight: 50,
       ),

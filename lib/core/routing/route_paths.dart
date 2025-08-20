@@ -1,6 +1,7 @@
 class RoutePaths {
   static String home = '/';
   static String onboarding = '/onboarding-screen';
+  static String authController = '/auth-checker';
 
   // Auth Routes
   static String login = '/login';

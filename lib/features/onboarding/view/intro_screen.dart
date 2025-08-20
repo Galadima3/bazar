@@ -1,4 +1,5 @@
 import 'package:bazar/core/routing/route_paths.dart';
+import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,7 +51,11 @@ class IntroScreen extends StatelessWidget {
               width: 327,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await OnboardingService.setOnboardingSeen();
+                  if (!context.mounted) return;
+                  context.pushReplacement(RoutePaths.signup);
+                },
                 child: Text(
                   "Get Started",
                   style: textTheme.headlineSmall?.copyWith(color: Colors.white),

@@ -8,7 +8,6 @@ import 'package:bazar/features/auth/presentation/widgets/or_divider.dart';
 import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
 import 'package:bazar/features/auth/presentation/widgets/social_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,7 +29,8 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove(); // remove splash here too
+    //TODO: Observe this 
+    //FlutterNativeSplash.remove(); // remove splash here too
   }
   @override
   void dispose() {
@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
 
               // Forgot password textbutton
               Padding(
-                padding: const EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 7.5),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
@@ -126,6 +126,7 @@ class _LoginViewState extends State<LoginView> {
                       log(
                         "Email: ${emailController.text} & Password: ${passwordController.text}",
                       );
+                      context.pushReplacement(RoutePaths.home);
                     } else {
                       // Some field failed ❌
                       log("Validation failed");

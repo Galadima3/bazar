@@ -5,6 +5,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+
+//TODO: Work on Home Feature
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -23,18 +26,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _removeSplash();
-  // }
-
-  // Future<void> _removeSplash() async {
-  //   // give router time to run redirect before removing splash
-  //   await Future.delayed(const Duration(milliseconds: 300));
-  //   FlutterNativeSplash.remove();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

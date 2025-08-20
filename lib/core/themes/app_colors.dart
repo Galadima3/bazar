@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // AppColors._(); // private constructor (no instantiation)
-
   // ===== Greyscale =====
   static const Color grey50 = Color(0xFFFAFAFA);
   static const Color grey100 = Color(0xFFF5F5F5);

@@ -1,6 +1,7 @@
 import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/features/auth/model/reset_method.dart';
 import 'package:bazar/features/auth/presentation/view/auth/login_view.dart';
+import 'package:bazar/features/auth/presentation/view/auth/sign_up_view.dart';
 import 'package:bazar/features/auth/presentation/view/completion_view.dart';
 import 'package:bazar/features/auth/presentation/view/password/new_password_view.dart';
 import 'package:bazar/features/auth/presentation/view/password/password_recovery.dart';
@@ -9,7 +10,8 @@ import 'package:bazar/features/auth/presentation/view/password/password_verifica
 import 'package:bazar/features/auth/presentation/view/verification/email_verification_view.dart';
 import 'package:bazar/features/auth/presentation/view/verification/phone_input_view.dart';
 import 'package:bazar/features/auth/presentation/view/verification/phone_verification_view.dart';
-import 'package:bazar/features/home/home_screen.dart';
+import 'package:bazar/features/auth/service/auth_controller.dart';
+import 'package:bazar/features/home/presentation/home_screen.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +21,7 @@ class AppRouter {
     final seen = await OnboardingService.hasSeenOnboarding();
 
     return GoRouter(
-      initialLocation: seen ? RoutePaths.login : RoutePaths.onboarding,
+      initialLocation: seen ? RoutePaths.authController : RoutePaths.onboarding,
       routes: [
         // Home
         GoRoute(
@@ -34,6 +36,14 @@ class AppRouter {
         ),
 
         // Auth
+        GoRoute(
+          path: RoutePaths.authController,
+          builder: (context, state) => const AuthController(),
+        ),
+        GoRoute(
+          path: RoutePaths.signup,
+          builder: (context, state) => const SignUpView(),
+        ),
         GoRoute(
           path: RoutePaths.login,
           builder: (context, state) => const LoginView(),

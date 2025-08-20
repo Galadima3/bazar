@@ -12,6 +12,38 @@ class AppSharedTheme {
       ),
     );
   }
+  // AppBar Theme
+  static AppBarTheme appBar(ColorScheme scheme) {
+    return AppBarTheme(
+      backgroundColor: scheme.brightness == Brightness.light
+          ? Colors.white
+          : Colors.black,
+      foregroundColor: scheme.brightness == Brightness.light
+          ? Colors.black
+          : Colors.white,
+      toolbarHeight: 50,
+      elevation: 0,
+      centerTitle: true,
+      iconTheme: IconThemeData(
+        color: scheme.brightness == Brightness.light
+            ? Colors.black
+            : Colors.white,
+      ),
+      actionsIconTheme: IconThemeData(
+        color: scheme.brightness == Brightness.light
+            ? Colors.black
+            : Colors.white,
+      ),
+      titleTextStyle: TextStyle(
+        color: scheme.brightness == Brightness.light
+            ? Colors.black
+            : Colors.white,
+        fontSize: 20,
+        fontFamily: 'OpenSans',
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
 
   // Cards
   static CardThemeData card(ColorScheme scheme) {

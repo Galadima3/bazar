@@ -46,7 +46,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
       ),
       body: Form(

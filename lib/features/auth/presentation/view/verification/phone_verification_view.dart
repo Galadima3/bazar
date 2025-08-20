@@ -40,8 +40,8 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(color: Colors.black,),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        // elevation: 0,
+        // backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
