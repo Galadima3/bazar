@@ -14,8 +14,10 @@ import 'package:bazar/features/auth/presentation/view/verification/phone_verific
 import 'package:bazar/features/auth/service/auth_controller.dart';
 import 'package:bazar/features/auth/service/auth_service.dart';
 import 'package:bazar/features/cart/cart_view.dart';
-import 'package:bazar/features/category/category_view.dart';
+import 'package:bazar/features/category/presentation/views/category_view.dart';
+import 'package:bazar/features/home/presentation/view/authors_view.dart';
 import 'package:bazar/features/home/presentation/view/home_view.dart';
+import 'package:bazar/features/home/presentation/view/vendor_view.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
 import 'package:bazar/features/profile/profile_view.dart';
@@ -30,12 +32,12 @@ class AppRouter {
       redirect: (context, state) async {
         final isLoggedIn = await AuthService.checkUserAuthStatus();
         final currentPath = state.matchedLocation;
-        
+
         // If onboarding hasn't been seen, redirect to onboarding
         if (!seen && currentPath != RoutePaths.onboarding) {
           return RoutePaths.onboarding;
         }
-        
+
         // Define paths that require authentication (main app routes)
         final protectedPaths = [
           RoutePaths.home,
@@ -43,17 +45,17 @@ class AppRouter {
           RoutePaths.cart,
           RoutePaths.profile,
         ];
-        
+
         // Only redirect to login if onboarding has been seen AND user is not logged in
         if (seen && !isLoggedIn && protectedPaths.contains(currentPath)) {
           return RoutePaths.login;
         }
-        
+
         // If user is logged in and on login page, redirect to home
         if (isLoggedIn && currentPath == RoutePaths.login) {
           return RoutePaths.home;
         }
-        
+
         return null; // No redirect needed
       },
       routes: [
@@ -68,9 +70,8 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: RoutePaths.home,
-                  pageBuilder: (context, state) => const NoTransitionPage(
-                    child: HomeScreen(),
-                  ),
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: HomeScreen()),
                 ),
               ],
             ),
@@ -79,9 +80,8 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: RoutePaths.category,
-                  pageBuilder: (context, state) => const NoTransitionPage(
-                    child: CategoryView(),
-                  ),
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: CategoryView()),
                 ),
               ],
             ),
@@ -90,9 +90,8 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: RoutePaths.cart,
-                  pageBuilder: (context, state) => const NoTransitionPage(
-                    child: CartView(), // You'll need to create this
-                  ),
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: CartView()),
                 ),
               ],
             ),
@@ -101,9 +100,8 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: RoutePaths.profile,
-                  pageBuilder: (context, state) => const NoTransitionPage(
-                    child: ProfileView(),
-                  ),
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: ProfileView()),
                 ),
               ],
             ),
@@ -172,9 +170,17 @@ class AppRouter {
             return CompletionView(isPasswordReset: isPasswordReset);
           },
         ),
+
+        // ======= Home Views ========
+        GoRoute(
+          path: RoutePaths.vendors,
+          builder: (context, state) => const VendorView(),
+        ),
+        GoRoute(
+          path: RoutePaths.authors,
+          builder: (context, state) => const AuthorsView(),
+        ),
       ],
     );
   }
 }
-
-// Placeholder CartView - you'll need to create this
