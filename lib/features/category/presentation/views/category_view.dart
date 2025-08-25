@@ -13,6 +13,7 @@ class CategoryView extends StatefulWidget {
 class _CategoryViewState extends State<CategoryView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  // ignore: unused_field
   int _selectedIndex = 0;
   @override
   void initState() {

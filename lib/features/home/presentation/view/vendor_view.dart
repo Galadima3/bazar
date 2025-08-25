@@ -13,6 +13,7 @@ class VendorView extends ConsumerStatefulWidget {
 class _VendorViewState extends ConsumerState<VendorView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  // ignore: unused_field
   int _selectedIndex = 0;
   @override
   void initState() {

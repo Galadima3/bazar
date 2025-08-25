@@ -14,6 +14,7 @@ class AuthorsView extends ConsumerStatefulWidget {
 class _AuthorsViewState extends ConsumerState<AuthorsView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+ // ignore: unused_field
  int _selectedIndex = 0;
   @override
   void initState() {

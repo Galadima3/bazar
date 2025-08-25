@@ -11,6 +11,7 @@ class DarkTheme {
       appBarTheme: AppSharedTheme.appBar(scheme),
       textTheme: AppTextTheme.textTheme(scheme),
       // navigationBarTheme: AppSharedTheme.navigationBar(scheme),
+      listTileTheme: AppSharedTheme.listTile(scheme),
       bottomNavigationBarTheme: AppSharedTheme.bottomNavigationBar(scheme),
       elevatedButtonTheme: AppSharedTheme.elevatedButton(scheme),
       cardTheme: AppSharedTheme.card(scheme),

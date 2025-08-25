@@ -20,5 +20,12 @@ class RoutePaths {
   static String profile = '/profile';
   static String vendors = '/vendors';
   static String authors = '/authors';
+
+  static String myAccount = '/myAccount';
+  static String address = '/address';
+  static String offersPromo = '/offersPromo';
+  static String favourites = '/favourites';
+  static String orderHistory = '/orderHistory';
+  static String helpCenter = '/helpCenter';
   
 }

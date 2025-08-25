@@ -29,7 +29,9 @@ class AppSharedTheme {
           );
         }
         return TextStyle(
-          color: scheme.onSurfaceVariant.withValues(alpha: 0.7), // Slightly muted unselected
+          color: scheme.onSurfaceVariant.withValues(
+            alpha: 0.7,
+          ), // Slightly muted unselected
           fontSize: 12,
           fontWeight: FontWeight.w400,
         );
@@ -42,11 +44,15 @@ class AppSharedTheme {
           );
         }
         return IconThemeData(
-          color: scheme.onSurfaceVariant.withValues(alpha: 0.7), // Slightly muted unselected
+          color: scheme.onSurfaceVariant.withValues(
+            alpha: 0.7,
+          ), // Slightly muted unselected
           size: 24,
         );
       }),
-      indicatorColor: scheme.primary.withValues(alpha: 0.12), // Subtle primary indicator
+      indicatorColor: scheme.primary.withValues(
+        alpha: 0.12,
+      ), // Subtle primary indicator
       indicatorShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -60,7 +66,9 @@ class AppSharedTheme {
       elevation: 8.0,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: scheme.primary, // Primary color for selected items
-      unselectedItemColor: scheme.onSurfaceVariant.withValues(alpha: 0.7), // Muted unselected
+      unselectedItemColor: scheme.onSurfaceVariant.withValues(
+        alpha: 0.7,
+      ), // Muted unselected
       selectedLabelStyle: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w700, // Bolder for selected
@@ -74,7 +82,9 @@ class AppSharedTheme {
         size: 26, // Slightly larger for selected
       ),
       unselectedIconTheme: IconThemeData(
-        color: scheme.onSurfaceVariant.withValues(alpha: 0.7), // Muted unselected
+        color: scheme.onSurfaceVariant.withValues(
+          alpha: 0.7,
+        ), // Muted unselected
         size: 24,
       ),
       showSelectedLabels: true,
@@ -172,6 +182,21 @@ class AppSharedTheme {
       ),
       checkColor: WidgetStateProperty.all<Color>(scheme.onPrimary),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+    );
+  }
+
+  // ListTiles
+  static ListTileThemeData listTile(ColorScheme scheme) {
+    return ListTileThemeData(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+      titleTextStyle: TextStyle(
+        color: scheme.brightness == Brightness.light
+            ? Colors.black
+            : Colors.white,
+        fontSize: 16,
+        fontFamily: 'OpenSans',
+      ),
+      minTileHeight: 72,
     );
   }
 }

@@ -13,6 +13,7 @@ class LightTheme {
       textTheme: AppTextTheme.textTheme(scheme),
       // navigationBarTheme: AppSharedTheme.navigationBar(scheme),
       bottomNavigationBarTheme: AppSharedTheme.bottomNavigationBar(scheme),
+      listTileTheme: AppSharedTheme.listTile(scheme),
       elevatedButtonTheme: AppSharedTheme.elevatedButton(scheme),
       cardTheme: AppSharedTheme.card(scheme),
       inputDecorationTheme: AppSharedTheme.input(scheme),

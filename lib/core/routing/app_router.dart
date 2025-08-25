@@ -20,7 +20,11 @@ import 'package:bazar/features/home/presentation/view/home_view.dart';
 import 'package:bazar/features/home/presentation/view/vendor_view.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
-import 'package:bazar/features/profile/profile_view.dart';
+import 'package:bazar/features/profile/presentation/views/favorite_view.dart';
+import 'package:bazar/features/profile/presentation/views/location_view.dart';
+import 'package:bazar/features/profile/presentation/views/my_account_view.dart';
+import 'package:bazar/features/profile/presentation/views/order_history_view.dart';
+import 'package:bazar/features/profile/presentation/views/profile_view.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -179,6 +183,24 @@ class AppRouter {
         GoRoute(
           path: RoutePaths.authors,
           builder: (context, state) => const AuthorsView(),
+        ),
+
+        // ======= Profile Views ========
+        GoRoute(
+          path: RoutePaths.myAccount,
+          builder: (context, state) => const MyAccountView(),
+        ),
+        GoRoute(
+          path: RoutePaths.address,
+          builder: (context, state) => const LocationView(),
+        ),
+        GoRoute(
+          path: RoutePaths.favourites,
+          builder: (context, state) => const FavoriteView(),
+        ),
+        GoRoute(
+          path: RoutePaths.orderHistory,
+          builder: (context, state) => const OrderHistoryView(),
         ),
       ],
     );
