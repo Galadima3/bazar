@@ -1,133 +1,175 @@
 import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/core/themes/app_colors.dart';
+import 'package:bazar/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: Text("Profile"), centerTitle: true),
-      body: Column(
-        children: [
-          Container(
-            height: 88,
-            width: 375,
-            decoration: BoxDecoration(
-              border: Border.all(width: 0.5, color: Colors.grey.shade500),
-            ),
-            child: Row(
-              children: [
-                SizedBox(width: 3.5),
-
-                //Circle Avatar
-                CircleAvatar(radius: 30),
-                SizedBox(width: 12.5),
-
-                // Name & Phone Number
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("John Doe", style: textTheme.headlineSmall),
-                    Text(
-                      "(+1) 234 567 890",
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey.shade500,
+      backgroundColor: Colors.grey[50],
+      appBar: AppBar(
+        title: Text("Profile"),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Profile Header Card
+            Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  // Enhanced Circle Avatar
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColors.primary500.withValues(alpha: 0.2),
+                        width: 2,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(width: 95),
-
-                // Logout Text
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Logout",
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: AppColors.primary500.withValues(alpha: 0.1),
+                      child: Text(
+                        'JD',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primary500,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(width: 16),
+
+                  // Name & Phone Number
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "John Doe",
+                          style: textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "(+1) 234 567 890",
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Enhanced Logout Button
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.red.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Logout",
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          ProfileTile(
-            icon: Icons.person,
-            label: "My Account",
-            onPressed: () => context.push(RoutePaths.myAccount),
-          ),
+            // Menu Items Container
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  ProfileTile(
+                    icon: Icons.person_outline,
+                    label: "My Account",
+                    onPressed: () => context.push(RoutePaths.myAccount),
+                    isFirst: true,
+                  ),
 
-          ProfileTile(
-            icon: CupertinoIcons.location_solid,
-            label: "Address",
-            onPressed: () => context.push(RoutePaths.address),
-          ),
+                  ProfileTile(
+                    icon: CupertinoIcons.location,
+                    label: "Address",
+                    onPressed: () => context.push(RoutePaths.address),
+                  ),
 
-          ProfileTile(
-            icon: CupertinoIcons.gift_fill,
-            label: "Offers & Promos",
-            onPressed: () {},
-          ),
+                  ProfileTile(
+                    icon: CupertinoIcons.gift,
+                    label: "Offers & Promos",
+                    onPressed: () => context.push(RoutePaths.offersPromo),
+                  ),
 
-          ProfileTile(
-            icon: CupertinoIcons.heart_fill,
-            label: "Your favourites",
-            onPressed: () => context.push(RoutePaths.favourites),
-          ),
+                  ProfileTile(
+                    icon: CupertinoIcons.heart,
+                    label: "Your favourites",
+                    onPressed: () => context.push(RoutePaths.favourites),
+                  ),
 
-          ProfileTile(
-            icon: Icons.note_add_sharp,
-            label: "Order History",
-            onPressed: () => context.push(RoutePaths.orderHistory),
-          ),
+                  ProfileTile(
+                    icon: CupertinoIcons.time,
+                    label: "Order History",
+                    onPressed: () => context.push(RoutePaths.orderHistory),
+                  ),
 
-          ProfileTile(
-            icon: CupertinoIcons.chat_bubble_text,
-            label: "Help Center",
-            onPressed: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}
+                  ProfileTile(
+                    icon: CupertinoIcons.chat_bubble_2,
+                    label: "Help Center",
+                    onPressed: () => context.push(RoutePaths.helpCenter),
+                    isLast: true,
+                  ),
+                ],
+              ),
+            ),
 
-class ProfileTile extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
-  final IconData icon;
-  const ProfileTile({
-    super.key,
-    required this.label,
-    required this.onPressed,
-    required this.icon,
-  });
+            SizedBox(height: 32),
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.grey50,
+    
+          ],
         ),
-        child: Center(child: Icon(icon, color: AppColors.primary500)),
-      ),
-      title: Text(label),
-      trailing: IconButton(
-        icon: Icon(CupertinoIcons.forward),
-        color: Colors.grey[500],
-        onPressed: onPressed,
       ),
     );
   }
 }
+

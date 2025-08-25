@@ -36,7 +36,10 @@ class _LocationViewState extends ConsumerState<LocationView> {
               // Address on Map
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Container(height: 223, width: 327, color: Colors.black),
+                child: Container(height: 223, width: 327, decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius:  BorderRadius.circular(12)
+                ),),
               ),
             ],
           ),

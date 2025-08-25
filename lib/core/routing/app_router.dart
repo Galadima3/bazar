@@ -21,8 +21,10 @@ import 'package:bazar/features/home/presentation/view/vendor_view.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
 import 'package:bazar/features/profile/presentation/views/favorite_view.dart';
+import 'package:bazar/features/profile/presentation/views/help_center_view.dart';
 import 'package:bazar/features/profile/presentation/views/location_view.dart';
 import 'package:bazar/features/profile/presentation/views/my_account_view.dart';
+import 'package:bazar/features/profile/presentation/views/offers_promo_view.dart';
 import 'package:bazar/features/profile/presentation/views/order_history_view.dart';
 import 'package:bazar/features/profile/presentation/views/profile_view.dart';
 import 'package:go_router/go_router.dart';
@@ -195,12 +197,20 @@ class AppRouter {
           builder: (context, state) => const LocationView(),
         ),
         GoRoute(
+          path: RoutePaths.offersPromo,
+          builder: (context, state) => const OffersPromoView(),
+        ),
+        GoRoute(
           path: RoutePaths.favourites,
           builder: (context, state) => const FavoriteView(),
         ),
         GoRoute(
           path: RoutePaths.orderHistory,
           builder: (context, state) => const OrderHistoryView(),
+        ),
+        GoRoute(
+          path: RoutePaths.helpCenter,
+          builder: (context, state) => const HelpCenterView(),
         ),
       ],
     );
