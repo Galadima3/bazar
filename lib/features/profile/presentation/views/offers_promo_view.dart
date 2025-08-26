@@ -2,6 +2,7 @@ import 'package:bazar/core/themes/app_colors.dart';
 import 'package:bazar/features/profile/presentation/widgets/coupon_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Example Provider (if you want to store coupons in Riverpod)
 final couponsProvider = Provider<List<Map<String, dynamic>>>((ref) {
@@ -29,28 +30,31 @@ class _OffersPromoViewState extends ConsumerState<OffersPromoView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order History"),
+        title: Text(
+          "Order History",
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+        ),
         centerTitle: true,
-        leading: BackButton()
+        leading: const BackButton(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "You Have ${coupons.length} Coupons to use",
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Expanded(
               child: GridView.builder(
                 itemCount: coupons.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 1,
+                  mainAxisSpacing: 16.h,
+                  crossAxisSpacing: 16.w,
+                  childAspectRatio: 1, // keep square-like cards
                 ),
                 itemBuilder: (context, index) {
                   final coupon = coupons[index];
@@ -67,4 +71,3 @@ class _OffersPromoViewState extends ConsumerState<OffersPromoView> {
     );
   }
 }
-

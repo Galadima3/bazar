@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialButton extends StatelessWidget {
@@ -20,8 +21,8 @@ class SocialButton extends StatelessWidget {
       child: OutlinedButton.icon(
         icon: SvgPicture.asset(
           "assets/icons/$assetPath.svg",
-          height: 20,
-          width: 20,
+          height: 20.h,
+          width: 20.w,
         ),
         label: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14.0),
@@ -32,10 +33,10 @@ class SocialButton extends StatelessWidget {
         ),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
           ),
           side: const BorderSide(color: Colors.black12),
-          minimumSize: const Size.fromHeight(50),
+          minimumSize:  Size.fromHeight(50.h),
         ),
         onPressed: onTap,
       ),

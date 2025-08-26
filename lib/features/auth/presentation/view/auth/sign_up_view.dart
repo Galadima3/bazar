@@ -5,6 +5,7 @@ import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dar
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final isPasswordVisibleProvider = StateProvider<bool>((ref) => false);
 final passwordProvider = StateProvider<String>((ref) => "");
@@ -68,7 +69,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                 controller: _nameController,
                 validator: FormValidators.validateUsername,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Email field
               LabeledTextField(
@@ -78,7 +79,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                 keyboardType: TextInputType.emailAddress,
                 validator: FormValidators.validateEmail,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Password field
               LabeledTextField(
@@ -102,13 +103,13 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
 
               /// Inline strength (right under field)
               Padding(
-                padding: const EdgeInsets.only(top: 6.0, left: 17),
+                padding: EdgeInsets.only(top: 6.0.h, left: 17.w),
                 child: Row(
                   children: [
                     _inlineHint("8+ chars", password.length >= 8),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     _inlineHint("Number", password.contains(RegExp(r'[0-9]'))),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     _inlineHint(
                       "Letter",
                       password.contains(RegExp(r'[A-Za-z]')),
@@ -117,12 +118,12 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // Register button
               SizedBox(
-                height: 48,
-                width: 327,
+                height: 48.h,
+                width: 327.w,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
@@ -140,7 +141,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               // Footer text
               AuthFooterText(
@@ -153,15 +154,15 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
 
              
 
-              const SizedBox(height: 100),
+              SizedBox(height: 100.h),
 
               /// Terms notice
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding:  EdgeInsets.symmetric(horizontal: 24.0.h),
                 child: Text.rich(
                   TextSpan(
                     text: 'By signing up, you agree to our ',
-                    style: const TextStyle(color: Colors.grey, fontSize: 14),
+                    style: TextStyle(color: Colors.grey, fontSize: 14.sp),
                     children: [
                       TextSpan(
                         text: 'Terms and Data Policy',
@@ -175,7 +176,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
             ],
           ),
         ),
@@ -192,11 +193,11 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
           size: 15,
           color: isValid ? Colors.green : Colors.grey,
         ),
-        const SizedBox(width: 4),
+        SizedBox(width: 4.w),
         Text(
           text,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 13.sp,
             color: isValid ? Colors.green : Colors.grey,
           ),
         ),

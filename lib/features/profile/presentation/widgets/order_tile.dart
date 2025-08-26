@@ -1,5 +1,6 @@
 import 'package:bazar/features/profile/models/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order;
@@ -23,7 +24,6 @@ class OrderTile extends StatelessWidget {
   }
 
   Color _getBookCoverColor() {
-    // Generate different colors based on order title for demo
     switch (order.title) {
       case 'The Da Vinci Code':
         return Colors.blue;
@@ -39,39 +39,37 @@ class OrderTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: Offset(0, 2),
+            blurRadius: 10.r,
+            offset: Offset(0, 2.h),
           ),
         ],
       ),
       child: Row(
         children: [
-          // Book cover placeholder
           Container(
-            width: 48,
-            height: 48,
+            width: 48.w,
+            height: 48.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               color: _getBookCoverColor(),
             ),
             child: Center(
               child: Icon(
                 Icons.book,
                 color: Colors.white,
-                size: 24,
+                size: 24.sp,
               ),
             ),
           ),
-          SizedBox(width: 16),
-          // Order details
+          SizedBox(width: 16.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,27 +77,27 @@ class OrderTile extends StatelessWidget {
                 Text(
                   order.title,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 6),
+                SizedBox(height: 6.h),
                 Row(
                   children: [
                     Text(
                       order.status,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                         color: _getStatusColor(),
                       ),
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 16.w),
                     Text(
                       '${order.itemCount} item${order.itemCount > 1 ? 's' : ''}',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         color: Colors.grey[600],
                       ),
                     ),

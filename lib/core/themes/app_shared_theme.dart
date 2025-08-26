@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSharedTheme {
   // Elevated buttons
@@ -7,8 +8,8 @@ class AppSharedTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: scheme.primary,
         foregroundColor: scheme.onPrimary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+        padding:  EdgeInsets.symmetric(horizontal: 20.h, vertical: 12.w),
       ),
     );
   }
@@ -19,12 +20,12 @@ class AppSharedTheme {
       backgroundColor: scheme.surface,
       surfaceTintColor: scheme.surfaceTint,
       elevation: 8.0,
-      height: 80,
+      height: 80.h,
       labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
         if (states.contains(WidgetState.selected)) {
           return TextStyle(
             color: scheme.primary, // Uses primary color for selected text
-            fontSize: 12,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w700, // Bolder for selected state
           );
         }
@@ -32,7 +33,7 @@ class AppSharedTheme {
           color: scheme.onSurfaceVariant.withValues(
             alpha: 0.7,
           ), // Slightly muted unselected
-          fontSize: 12,
+          fontSize: 12.sp,
           fontWeight: FontWeight.w400,
         );
       }),
@@ -69,12 +70,12 @@ class AppSharedTheme {
       unselectedItemColor: scheme.onSurfaceVariant.withValues(
         alpha: 0.7,
       ), // Muted unselected
-      selectedLabelStyle: const TextStyle(
-        fontSize: 12,
+      selectedLabelStyle: TextStyle(
+        fontSize: 12.sp,
         fontWeight: FontWeight.w700, // Bolder for selected
       ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: 12,
+      unselectedLabelStyle: TextStyle(
+        fontSize: 12.sp,
         fontWeight: FontWeight.w400,
       ),
       selectedIconTheme: IconThemeData(
@@ -101,7 +102,7 @@ class AppSharedTheme {
       foregroundColor: scheme.brightness == Brightness.light
           ? Colors.black
           : Colors.white,
-      toolbarHeight: 50,
+      toolbarHeight: 50.h,
       elevation: 0,
       centerTitle: true,
       iconTheme: IconThemeData(
@@ -118,7 +119,7 @@ class AppSharedTheme {
         color: scheme.brightness == Brightness.light
             ? Colors.black
             : Colors.white,
-        fontSize: 20,
+        fontSize: 20.sp,
         fontFamily: 'OpenSans',
         fontWeight: FontWeight.bold,
       ),
@@ -130,7 +131,7 @@ class AppSharedTheme {
     return CardThemeData(
       color: scheme.surface,
       elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
     );
   }
 
@@ -140,16 +141,16 @@ class AppSharedTheme {
       filled: true,
       fillColor: scheme.surfaceContainerHighest,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: scheme.outline),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
         borderSide: BorderSide(color: scheme.outline),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: scheme.primary, width: 0.5),
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: scheme.primary, width: 0.5.w),
       ),
       labelStyle: TextStyle(color: scheme.onSurfaceVariant),
       hintStyle: TextStyle(color: scheme.onSurfaceVariant),
@@ -181,22 +182,22 @@ class AppSharedTheme {
             : scheme.onSurfaceVariant,
       ),
       checkColor: WidgetStateProperty.all<Color>(scheme.onPrimary),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.r)),
     );
   }
 
   // ListTiles
   static ListTileThemeData listTile(ColorScheme scheme) {
     return ListTileThemeData(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+      contentPadding:  EdgeInsets.symmetric(horizontal: 16.h),
       titleTextStyle: TextStyle(
         color: scheme.brightness == Brightness.light
             ? Colors.black
             : Colors.white,
-        fontSize: 16,
+        fontSize: 16.sp,
         fontFamily: 'OpenSans',
       ),
-      minTileHeight: 72,
+      minTileHeight: 72.h,
     );
   }
 }

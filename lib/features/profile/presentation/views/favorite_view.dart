@@ -3,6 +3,7 @@ import 'package:bazar/features/profile/presentation/widgets/favorites_tile.dart'
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavoriteView extends ConsumerStatefulWidget {
   const FavoriteView({super.key});
@@ -57,10 +58,10 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(CupertinoIcons.heart, size: 64, color: Colors.grey),
-                  SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Text(
                     'No favorite books yet',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    style: TextStyle(fontSize: 18.sp, color: Colors.grey),
                   ),
                 ],
               ),

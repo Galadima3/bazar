@@ -10,6 +10,7 @@ import 'package:bazar/features/auth/presentation/widgets/social_button.dart';
 import 'package:bazar/features/auth/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
@@ -38,10 +39,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-      ),
+      appBar: AppBar(backgroundColor: Colors.white),
       body: Form(
         key: _formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -55,51 +53,53 @@ class _LoginViewState extends State<LoginView> {
               ),
 
               // Email textfield
-              LabeledTextField(
-                label: "Email",
-                hint: "Enter your email",
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: FormValidators.validateEmail,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: LabeledTextField(
+                  label: "Email",
+                  hint: "Enter your email",
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: FormValidators.validateEmail,
+                ),
               ),
 
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Password textfield
               Consumer(
                 builder: (context, ref, _) {
                   final isVisible = ref.watch(isPasswordVisibleProvider);
-                  return LabeledTextField(
-                    label: "Password",
-                    hint: "Enter Your password",
-                    controller: passwordController,
-                    obscureText: !isVisible,
-                    suffix: IconButton(
-                      icon: Icon(
-                        isVisible ? Icons.visibility : Icons.visibility_off,
+                  return Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 8.0.h),
+                    child: LabeledTextField(
+                      label: "Password",
+                      hint: "Enter Your password",
+                      controller: passwordController,
+                      obscureText: !isVisible,
+                      suffix: IconButton(
+                        icon: Icon(
+                          isVisible ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () =>
+                            ref.read(isPasswordVisibleProvider.notifier).state =
+                                !isVisible,
                       ),
-                      onPressed: () =>
-                          ref.read(isPasswordVisibleProvider.notifier).state =
-                              !isVisible,
+                      validator: FormValidators.validatePassword,
                     ),
-                    validator: FormValidators.validatePassword,
                   );
                 },
               ),
 
               // Forgot password textbutton
               Padding(
-                padding: const EdgeInsets.only(left: 7.5),
+                padding: EdgeInsets.only(left: 7.5.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
                     onPressed: () =>
                         context.push(RoutePaths.passwordRecoveryView),
-                    // onPressed: () => Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => PasswordRecoveryView(),
-                    //   ),
-                    // ),
+
                     child: Text(
                       "Forgot Password?",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -110,12 +110,12 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // Login button
               SizedBox(
-                height: 48,
-                width: 327,
+                height: 48.h,
+                width: 327.w,
                 child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
@@ -124,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                         "Email: ${emailController.text} & Password: ${passwordController.text}",
                       );
                       await AuthService.setUserAuthstatus();
-                      if(!context.mounted) {
+                      if (!context.mounted) {
                         return;
                       }
                       context.pushReplacement(RoutePaths.home);
@@ -136,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                   child: Text("Login", style: TextStyle(color: Colors.white)),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // dont have acct...
               AuthFooterText(
@@ -147,11 +147,11 @@ class _LoginViewState extends State<LoginView> {
                 ).push(MaterialPageRoute(builder: (context) => SignUpView())),
               ),
 
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               OrDivider(),
 
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // alt sign in
               SocialButton(
@@ -159,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
                 label: 'Sign in with Google',
                 onTap: () {},
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               SocialButton(
                 assetPath: "apple",
                 label: 'Sign in with Apple',

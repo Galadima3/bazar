@@ -4,6 +4,7 @@ import 'package:bazar/core/utils/form_validator.dart';
 import 'package:bazar/features/auth/presentation/widgets/auth_section_header.dart';
 import 'package:bazar/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 /// User Enters New Password here
@@ -36,7 +37,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                     "Create your new password so you can login to your account",
               ),
               SizedBox(
-                height: 24,
+                height: 24.h,
               ),
               LabeledTextField(
                 label: "Password",
@@ -57,14 +58,14 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                 validator: FormValidators.validatePassword,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 6.0, left: 17),
+                padding: EdgeInsets.only(top: 6.0.h, left: 17.w),
                 child: Row(
                   children: [
                     _inlineHint("8+ chars", passwordController.text.length >= 8),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     _inlineHint(
                         "Number", passwordController.text.contains(RegExp(r'[0-9]'))),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     _inlineHint(
                       "Letter",
                       passwordController.text.contains(RegExp(r'[A-Za-z]')),
@@ -72,7 +73,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               // Confirm Password Field
               LabeledTextField(
                 label: "Confirm Password",
@@ -98,10 +99,10 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                 },
               ),
               SizedBox(
-                height: 31,
+                height: 31.h,
               ),
               SizedBox(
-                width: 327,
+                width: 327.w,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -121,15 +122,15 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary500,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: EdgeInsets.symmetric(vertical: 16.w),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Continue',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -152,11 +153,11 @@ class _NewPasswordViewState extends State<NewPasswordView> {
           size: 15,
           color: isValid ? Colors.green : Colors.grey,
         ),
-        const SizedBox(width: 4),
+        SizedBox(width: 4.w),
         Text(
           text,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 13.sp,
             color: isValid ? Colors.green : Colors.grey,
           ),
         ),

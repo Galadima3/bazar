@@ -2,6 +2,7 @@ import 'package:bazar/core/themes/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LocationView extends ConsumerStatefulWidget {
   const LocationView({super.key});
@@ -12,14 +13,13 @@ class LocationView extends ConsumerStatefulWidget {
 
 class _LocationViewState extends ConsumerState<LocationView> {
   bool _showBottomSheet = false;
+  String selectedOption = "";
 
   void _toggleBottomSheet() {
     setState(() {
       _showBottomSheet = !_showBottomSheet;
     });
   }
-
-  String selectedOption = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +35,19 @@ class _LocationViewState extends ConsumerState<LocationView> {
             children: [
               // Address on Map
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Container(height: 223, width: 327, decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius:  BorderRadius.circular(12)
-                ),),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Container(
+                  height: 223.h,
+                  width: 327.w,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                ),
               ),
             ],
           ),
+
           // Persistent Bottom Sheet
           if (_showBottomSheet)
             Positioned(
@@ -50,43 +55,51 @@ class _LocationViewState extends ConsumerState<LocationView> {
               left: 0,
               right: 0,
               child: Container(
-                height: 405,
-                padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                height: 405.h,
+                padding: EdgeInsets.all(16.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(0, -2),
+                      blurRadius: 10.r,
+                      offset: Offset(0, -2.h),
                     ),
                   ],
                 ),
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
+
                     // Header
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Detail Address',
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                fontSize: 20.sp,
+                              ),
                         ),
                         GestureDetector(
                           onTap: _toggleBottomSheet,
-                          child: Icon(Icons.location_pin, color: AppColors.primary500,),
+                          child: Icon(
+                            Icons.location_pin,
+                            color: AppColors.primary500,
+                            size: 24.sp,
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+
+                    SizedBox(height: 24.h),
 
                     // Location Tile
                     ListTile(
                       leading: Container(
-                        height: 40,
-                        width: 40,
+                        height: 40.h,
+                        width: 40.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColors.grey50,
@@ -95,35 +108,44 @@ class _LocationViewState extends ConsumerState<LocationView> {
                           child: Icon(
                             CupertinoIcons.location,
                             color: AppColors.primary500,
+                            size: 20.sp,
                           ),
                         ),
                       ),
-
-                      title: Text("Utama Street No.20"),
+                      title: Text(
+                        "Utama Street No.20",
+                        style: TextStyle(fontSize: 14.sp),
+                      ),
                       subtitle: Text(
                         "state Street No.15, New York 10001, United States",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey.shade500,
-                          fontSize: 14,
-                        ),
+                              color: Colors.grey.shade500,
+                              fontSize: 12.sp,
+                            ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+
+                    SizedBox(height: 16.h),
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Save Address As ",
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        "Save Address As",
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontSize: 18.sp,
+                            ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+
+                    SizedBox(height: 16.h),
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Wrap(
-                        spacing: 8.0, 
+                        spacing: 8.w,
                         children: [
                           ChoiceChip(
-                            label: Text("Home"),
+                            label: Text("Home", style: TextStyle(fontSize: 14.sp)),
                             selected: selectedOption == "Home",
                             onSelected: (bool selected) {
                               setState(() {
@@ -133,7 +155,7 @@ class _LocationViewState extends ConsumerState<LocationView> {
                             selectedColor: Colors.blueAccent,
                           ),
                           ChoiceChip(
-                            label: Text("Office"),
+                            label: Text("Office", style: TextStyle(fontSize: 14.sp)),
                             selected: selectedOption == "Office",
                             onSelected: (bool selected) {
                               setState(() {
@@ -146,28 +168,24 @@ class _LocationViewState extends ConsumerState<LocationView> {
                       ),
                     ),
 
-                    const SizedBox(height: 75),
+                    SizedBox(height: 75.h),
+
                     SizedBox(
                       width: double.infinity,
-                      height: 50,
+                      height: 50.h,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle confirmation logic here
-
-                          // Close the bottom sheet after confirmation
-                          _toggleBottomSheet();
-                        },
+                        onPressed: _toggleBottomSheet,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary400,
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                           ),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Confirmation',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -185,7 +203,7 @@ class _LocationViewState extends ConsumerState<LocationView> {
           : FloatingActionButton(
               backgroundColor: AppColors.primary400,
               onPressed: _toggleBottomSheet,
-              child: Icon(Icons.location_pin, color: Colors.white),
+              child: Icon(Icons.location_pin, color: Colors.white, size: 24.sp),
             ),
     );
   }

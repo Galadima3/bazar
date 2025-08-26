@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthSectionHeader extends StatelessWidget {
   final String title;
@@ -15,7 +16,7 @@ class AuthSectionHeader extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 20, bottom: 20),
+        padding: EdgeInsets.only(top: 8.h, left: 20.w, bottom: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

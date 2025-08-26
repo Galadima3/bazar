@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/features/auth/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 /// Displays Completion status for Registration || Password Reset
@@ -12,41 +13,46 @@ class CompletionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: 24.w), 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/images/onboarding_images/completion.png',
-                height: 91,
-                width: 160,
+                height: 91.h,  
+                width: 160.w,  
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
 
               // Title
               Text(
-                isPasswordReset ? "Password Changed": 'Congratulations!',
-                style: textTheme.displaySmall,
+                isPasswordReset ? "Password Changed" : 'Congratulations!',
+                style: textTheme.displaySmall?.copyWith(
+                  fontSize: 28.sp, // responsive title
+                ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
 
               // Subtitle
               Text(
-                isPasswordReset ? "Password changed successfully, you can login again with a new password" : 'Your account is complete, please enjoy the best menu from us.',
+                isPasswordReset
+                    ? "Password changed successfully, you can login again with a new password"
+                    : 'Your account is complete, please enjoy the best menu from us.',
                 style: textTheme.bodyLarge?.copyWith(
+                  fontSize: 16.sp, 
                   color: Colors.grey.shade500,
                 ),
-
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
 
-              // Get Started Button
+              // Get Started / Login Button
               CustomButton(
                 buttonText: isPasswordReset ? "Login" : 'Get Started',
                 onTap: () {
