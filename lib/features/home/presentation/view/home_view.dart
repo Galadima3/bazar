@@ -1,9 +1,12 @@
+import 'package:bazar/core/routing/route_paths.dart';
 import 'package:bazar/features/home/presentation/widgets/authors_widget.dart';
 import 'package:bazar/features/home/presentation/widgets/best_vendors_widget.dart';
 import 'package:bazar/features/home/presentation/widgets/weekly_top.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -21,11 +24,12 @@ class HomeScreen extends ConsumerWidget {
           leading: const Icon(CupertinoIcons.search),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: 10.0.h),
               child: Badge(
                 backgroundColor: Colors.red,
                 label: const Text("3"),
-                child: const Icon(CupertinoIcons.bell),
+                // child: const Icon(CupertinoIcons.bell),
+                child: IconButton(onPressed: () => context.push(RoutePaths.notifications), icon: Icon(CupertinoIcons.bell)),
               ),
             ),
           ],
@@ -36,21 +40,21 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             children: [
               // Special Offers Box
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               const _SpecialOfferBox(),
-              const SizedBox(height: 27),
+              SizedBox(height: 27.h),
 
               // Top of the week
               TopOfTheWeek(),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
 
               // Best Vendors
               const BestVendors(),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
 
               // Authors
               AuthorsWidget(),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
             ],
           ),
         ),
@@ -65,18 +69,17 @@ class _SpecialOfferBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
-      width: 327,
+      height: 150.h,
+      width: 327.w,
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.circular(12),
       ),
       alignment: Alignment.center,
-      child: const Text(
+      child:  Text(
         "Special Offer",
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: TextStyle(color: Colors.white, fontSize: 18.sp),
       ),
     );
   }
 }
-

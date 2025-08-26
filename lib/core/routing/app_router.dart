@@ -17,6 +17,8 @@ import 'package:bazar/features/cart/cart_view.dart';
 import 'package:bazar/features/category/presentation/views/category_view.dart';
 import 'package:bazar/features/home/presentation/view/authors_view.dart';
 import 'package:bazar/features/home/presentation/view/home_view.dart';
+import 'package:bazar/features/home/presentation/view/notification_detail_view.dart';
+import 'package:bazar/features/home/presentation/view/notifications_view.dart';
 import 'package:bazar/features/home/presentation/view/vendor_view.dart';
 import 'package:bazar/features/onboarding/service/onboarding_service.dart';
 import 'package:bazar/features/onboarding/view/onboarding_screen.dart';
@@ -185,6 +187,14 @@ class AppRouter {
         GoRoute(
           path: RoutePaths.authors,
           builder: (context, state) => const AuthorsView(),
+        ),
+         GoRoute(
+          path: RoutePaths.notifications,
+          builder: (context, state) => const NotificationsView(),
+        ),
+        GoRoute(
+          path: RoutePaths.notificationDetail,
+          builder: (context, state) => const NotificationDetailView(),
         ),
 
         // ======= Profile Views ========

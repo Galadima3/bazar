@@ -26,7 +26,7 @@ class ProfileView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
           child: Column(
             children: [
               // Profile Header Card
@@ -121,7 +121,7 @@ class ProfileView extends StatelessWidget {
 
               // Menu Items
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.r),

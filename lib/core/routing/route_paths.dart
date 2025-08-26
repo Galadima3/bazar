@@ -20,6 +20,8 @@ class RoutePaths {
   static String profile = '/profile';
   static String vendors = '/vendors';
   static String authors = '/authors';
+  static String notifications = '/notifications';
+  static String notificationDetail = '/notificationDetails';
 
   static String myAccount = '/myAccount';
   static String address = '/address';

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,6 +18,7 @@ class _HelpCenterViewState extends ConsumerState<HelpCenterView> {
         centerTitle: true,
         title: Text("Help Center"),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){}, child: Icon(CupertinoIcons.chat_bubble_2) ,),
     );
   }
 }
