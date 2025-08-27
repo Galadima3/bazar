@@ -83,7 +83,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        centerTitle: true,
+        
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16),

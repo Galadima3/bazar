@@ -19,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
         SliverAppBar(
           floating: true,
           snap: true,
-          centerTitle: true,
+          
           title: const Text("Home"),
           leading: const Icon(CupertinoIcons.search),
           actions: [

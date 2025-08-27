@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
           "Profile",
           style: textTheme.titleLarge?.copyWith(fontSize: 20.sp),
         ),
-        centerTitle: true,
+        
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

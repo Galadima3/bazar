@@ -15,7 +15,7 @@ class _HelpCenterViewState extends ConsumerState<HelpCenterView> {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        
         title: Text("Help Center"),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){}, child: Icon(CupertinoIcons.chat_bubble_2) ,),

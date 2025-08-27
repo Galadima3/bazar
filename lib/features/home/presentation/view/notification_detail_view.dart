@@ -12,7 +12,7 @@ class NotificationDetailView extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(),
         title: Text('Promotion'),
-        centerTitle: true,
+        
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),

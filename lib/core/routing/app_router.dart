@@ -13,8 +13,10 @@ import 'package:bazar/features/auth/presentation/view/verification/phone_input_v
 import 'package:bazar/features/auth/presentation/view/verification/phone_verification_view.dart';
 import 'package:bazar/features/auth/service/auth_controller.dart';
 import 'package:bazar/features/auth/service/auth_service.dart';
-import 'package:bazar/features/cart/cart_view.dart';
+import 'package:bazar/features/cart/presentation/view/cart_view.dart';
+import 'package:bazar/features/cart/presentation/view/confirm_order_view.dart';
 import 'package:bazar/features/category/presentation/views/category_view.dart';
+import 'package:bazar/features/home/models/book.dart';
 import 'package:bazar/features/home/presentation/view/authors_view.dart';
 import 'package:bazar/features/home/presentation/view/home_view.dart';
 import 'package:bazar/features/home/presentation/view/notification_detail_view.dart';
@@ -195,6 +197,15 @@ class AppRouter {
         GoRoute(
           path: RoutePaths.notificationDetail,
           builder: (context, state) => const NotificationDetailView(),
+        ),
+
+        /// ====== Cart Views ======
+        GoRoute(
+          path: RoutePaths.confirmOrder,
+          builder: (context, state) {
+            final orderedBooks = state.extra as List<Book>;
+            return ConfirmOrderView(orders: orderedBooks,);
+          },
         ),
 
         // ======= Profile Views ========

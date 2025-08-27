@@ -37,7 +37,7 @@ class _CategoryViewState extends State<CategoryView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        
         title: const Text("Category"),
         leading: const Icon(CupertinoIcons.search),
         actions: [

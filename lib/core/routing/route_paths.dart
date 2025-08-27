@@ -17,6 +17,7 @@ class RoutePaths {
 
   static String category= '/category';
   static String cart = '/cart';
+  static String confirmOrder = '/confirmOrder';
   static String profile = '/profile';
   static String vendors = '/vendors';
   static String authors = '/authors';

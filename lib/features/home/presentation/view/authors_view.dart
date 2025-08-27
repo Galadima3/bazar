@@ -41,7 +41,7 @@ class _AuthorsViewState extends ConsumerState<AuthorsView>
         surfaceTintColor: Colors.transparent,
         leading: BackButton(),
         title: Text("Authors"),
-        centerTitle: true,
+        
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),

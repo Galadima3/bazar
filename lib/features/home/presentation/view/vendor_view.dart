@@ -40,7 +40,7 @@ class _VendorViewState extends ConsumerState<VendorView>
         surfaceTintColor: Colors.transparent,
         leading: BackButton(),
         title: Text("Vendors"),
-        centerTitle: true,
+        
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),

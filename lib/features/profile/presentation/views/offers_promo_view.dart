@@ -34,7 +34,7 @@ class _OffersPromoViewState extends ConsumerState<OffersPromoView> {
           "Order History",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
         ),
-        centerTitle: true,
+        
         leading: const BackButton(),
       ),
       body: Padding(
