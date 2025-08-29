@@ -1,18 +1,29 @@
 import 'package:bazar/core/themes/app_colors.dart';
 import 'package:bazar/features/cart/presentation/widgets/address_box.dart';
 import 'package:bazar/features/cart/presentation/widgets/confirm_order_tile.dart';
+import 'package:bazar/features/cart/presentation/widgets/delivery_options_modal.dart';
+import 'package:bazar/features/cart/presentation/widgets/payment_options_modal.dart';
 import 'package:bazar/features/home/models/book.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ConfirmOrderView extends ConsumerWidget {
+class ConfirmOrderView extends ConsumerStatefulWidget {
   final List<Book> orders;
   const ConfirmOrderView({super.key, required this.orders});
 
+  @override
+  ConsumerState<ConfirmOrderView> createState() => _ConfirmOrderViewState();
+}
+
+class _ConfirmOrderViewState extends ConsumerState<ConfirmOrderView> {
+  String selectedDate = 'Today';
+  String selectedTime = 'Between 10PM : 11PM';
+  String selectedPayment = 'KNET';
+
   double get totalPrice {
-    return orders.fold(0.0, (sum, book) {
+    return widget.orders.fold(0.0, (sum, book) {
       final priceString = book.price.replaceAll('\$', '');
       return sum + (double.tryParse(priceString) ?? 0.0);
     });
@@ -22,14 +33,40 @@ class ConfirmOrderView extends ConsumerWidget {
 
   double get totalPayment => totalPrice + shippingCost;
 
+  void _showDeliveryOptionsModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DeliveryOptionsModal(
+        selectedDate: selectedDate,
+        selectedTime: selectedTime,
+        onDateChanged: (date) => setState(() => selectedDate = date),
+        onTimeChanged: (time) => setState(() => selectedTime = time),
+      ),
+    );
+  }
+
+  void _showPaymentOptionsModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => PaymentOptionsModal(
+        selectedPayment: selectedPayment,
+        onPaymentChanged: (payment) =>
+            setState(() => selectedPayment = payment),
+      ),
+    );
+  }
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
         title: const Text('Confirm Order'),
-
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined, color: Colors.black),
@@ -150,9 +187,9 @@ class ConfirmOrderView extends ConsumerWidget {
                   SizedBox(height: 16.h),
                   ConfirmOrderTile(
                     title: 'Date & time',
-                    subtitle: 'Choose date and time',
+                    subtitle: '$selectedDate, $selectedTime',
                     icon: CupertinoIcons.calendar,
-                    onPressed: () {},
+                    onPressed: _showDeliveryOptionsModal,
                   ),
                   SizedBox(height: 16.h),
 
@@ -161,9 +198,9 @@ class ConfirmOrderView extends ConsumerWidget {
                   SizedBox(height: 16.h),
                   ConfirmOrderTile(
                     title: "Payment",
-                    subtitle: "Choose your payment",
+                    subtitle: selectedPayment,
                     icon: CupertinoIcons.creditcard_fill,
-                    onPressed: () {},
+                    onPressed: _showPaymentOptionsModal,
                   ),
                 ],
               ),
@@ -177,20 +214,19 @@ class ConfirmOrderView extends ConsumerWidget {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: orders.isEmpty
+                onPressed: widget.orders.isEmpty
                     ? null
                     : () {
                         // Handle order action
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Order confirmed! ${orders.length} books',
+                              'Order confirmed! ${widget.orders.length} books',
                             ),
                             backgroundColor: const Color(0xFF6B46C1),
                           ),
                         );
                       },
-                
                 child: const Text(
                   'Order',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
@@ -203,4 +239,3 @@ class ConfirmOrderView extends ConsumerWidget {
     );
   }
 }
-

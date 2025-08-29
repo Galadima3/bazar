@@ -57,7 +57,7 @@ class ConfirmOrderTile extends StatelessWidget {
           ),
 
           IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
           ),
         ],
