@@ -1,5 +1,10 @@
 import 'dart:developer';
 
+import 'package:bazar/features/category/presentation/views/all_category_view.dart';
+import 'package:bazar/features/category/presentation/views/novel_category_view.dart';
+import 'package:bazar/features/category/presentation/views/romance_category_view.dart';
+import 'package:bazar/features/category/presentation/views/science_category_view.dart';
+import 'package:bazar/features/category/presentation/views/self_love_category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +42,6 @@ class _CategoryViewState extends State<CategoryView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         title: const Text("Category"),
         leading: const Icon(CupertinoIcons.search),
         actions: [
@@ -67,11 +71,12 @@ class _CategoryViewState extends State<CategoryView>
       body: TabBarView(
         controller: _tabController,
         children: const [
-          Center(child: Text("All")),
-          Center(child: Text("Novels")),
-          Center(child: Text("Self Love")),
-          Center(child: Text("Science")),
-          Center(child: Text("Romance")),
+          //Center(child: Text("All")),
+          AllCategoryView(),
+          NovelCategoryView(),
+          SelfLoveCategory(),
+          ScienceCategoryView(),
+          RomanceCategoryView()
         ],
       ),
     );
