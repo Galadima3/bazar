@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmOrderView extends ConsumerStatefulWidget {
   final List<Book> orders;
@@ -217,13 +218,46 @@ class _ConfirmOrderViewState extends ConsumerState<ConfirmOrderView> {
                 onPressed: widget.orders.isEmpty
                     ? null
                     : () {
-                        // Handle order action
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(
-                              'Order confirmed! ${widget.orders.length} books',
+                            behavior: SnackBarBehavior
+                                .floating, // makes it float above content
+                            margin: const EdgeInsets.all(
+                              16,
+                            ), // adds spacing from screen edges
+                            shape: RoundedRectangleBorder(
+                              // rounded corners
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             backgroundColor: const Color(0xFF6B46C1),
+                            content: Row(
+                              children: [
+                                const Icon(
+                                  Icons.check_circle,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Text(
+                                    'Order confirmed! ${widget.orders.length} books',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            duration: const Duration(
+                              seconds: 3,
+                            ), // auto dismiss
+                            action: SnackBarAction(
+                              label: 'VIEW',
+                              textColor: Colors.white,
+                              onPressed: () {
+                                context.pop();
+                              },
+                            ),
                           ),
                         );
                       },

@@ -19,7 +19,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
       status: 'Delivered',
       itemCount: 1,
       imageUrl: 'assets/davinci.jpg', // placeholder
-      orderDate: DateTime(2021, 10, 15),
+      orderDate: DateTime(2025, 08, 15),
     ),
     Order(
       id: '2',
@@ -27,7 +27,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
       status: 'Delivered',
       itemCount: 5,
       imageUrl: 'assets/carrie.jpg', // placeholder
-      orderDate: DateTime(2021, 10, 12),
+      orderDate: DateTime(2025, 08, 12),
     ),
     Order(
       id: '3',
@@ -35,7 +35,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
       status: 'Cancelled',
       itemCount: 2,
       imageUrl: 'assets/waiting.jpg', // placeholder
-      orderDate: DateTime(2021, 10, 8),
+      orderDate: DateTime(2025, 08, 8),
     ),
   ];
 

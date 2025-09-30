@@ -33,9 +33,9 @@ class NotificationsView extends StatelessWidget {
         children: [
           SizedBox(height: 20.h),
 
-          // October 2021 Section
+          // October 2025 Section
           Text(
-            'October 2021',
+            'October 2025',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: 16.h),
@@ -46,7 +46,7 @@ class NotificationsView extends StatelessWidget {
             typeColor: AppColors.primary500,
             title:
                 'Today 50% discount on all Books in Novel category with online orders worldwide.',
-            date: 'Oct 21',
+            date: 'Oct 2',
             time: '08:00',
 
             onTap: () => Navigator.push(
@@ -64,7 +64,7 @@ class NotificationsView extends StatelessWidget {
             type: 'Promotion',
             typeColor: AppColors.primary500,
             title:
-                'Buy 2 get 1 free for since books from 08 - 10 October 2021.',
+                'Buy 2 get 1 free available for all books from 08 - 10 October 2025.',
             date: 'Oct 08',
             time: '20:30',
             onTap: () {},
@@ -74,7 +74,7 @@ class NotificationsView extends StatelessWidget {
 
           // September 2021 Section
           Text(
-            'September 2021',
+            'September 2025',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -87,7 +87,7 @@ class NotificationsView extends StatelessWidget {
           NotificationTile(
             type: 'Information',
             typeColor: const Color(0xFF3B82F6),
-            title: 'There is a new book now are available',
+            title: 'There is a new book available',
             date: 'Sept 16',
             time: '11:00',
             onTap: () {},

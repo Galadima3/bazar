@@ -93,13 +93,7 @@ class _CartViewState extends State<CartView> {
                 if (index == cartItems.length) {
                   return Column(
                     children: [
-                      // Divider(
-                      //   color: Colors.grey,
-                      //   height: 20,
-                      //   thickness: 1,
-                      //   indent: 16,
-                      //   endIndent: 16,
-                      // ),
+                      
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
                         child: Row(
