@@ -23,7 +23,7 @@ class BestVendors extends StatelessWidget {
             title: "Best Vendors",
             onPressed: () => context.push(RoutePaths.vendors),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 14),
           Expanded(
             child: ListView.builder(
               itemCount: imageUrls.length,

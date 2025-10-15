@@ -86,7 +86,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Text(
                     'Skip',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: const Color(0xff564290),
+                          // color: const Color(0xff564290),
                           fontWeight: FontWeight.w700,
                         ),
                   ),

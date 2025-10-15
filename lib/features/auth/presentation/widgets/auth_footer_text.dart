@@ -20,7 +20,11 @@ class AuthFooterText extends StatelessWidget {
       children: [
         Text(
           prefix,
-          style: textTheme.bodyMedium?.copyWith(color: Colors.grey.shade700),
+          style: textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.grey.shade700,
+          ),
         ),
         TextButton(
           onPressed: onTap,
@@ -31,29 +35,10 @@ class AuthFooterText extends StatelessWidget {
           ),
           child: Text(
             actionText,
-            style: textTheme.bodyMedium?.copyWith(color: Color(0xff564290)),
+            style: textTheme.bodyMedium?.copyWith(color: Theme.of(context).brightness == Brightness.dark ? Color.fromARGB(255, 152, 128, 224) : Color(0xff564290)),
           ),
         ),
       ],
     );
-    // return RichText(
-    //   text: TextSpan(
-    // text: prefix,
-    // style: textTheme.bodyMedium?.copyWith(color: Colors.grey.shade700),
-    //     //style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
-    //     children: [
-    //       WidgetSpan(
-    //         child: GestureDetector(
-    //           onTap: onTap,
-    //           child: Text(
-    // actionText,
-    //  style: textTheme.bodyMedium?.copyWith(color: Color(0xff564290)),
-    //             //style: const TextStyle(color: Color(0xff564290)),
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

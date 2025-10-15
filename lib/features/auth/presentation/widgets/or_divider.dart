@@ -11,10 +11,10 @@ class OrDivider extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
-            'or with',
+            'Or with',
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade600),
+            ).textTheme.bodyMedium?.copyWith(color: Theme.of(context).brightness ==  Brightness.dark ? Colors.white : Colors.grey.shade600),
           ),
         ),
         const Expanded(child: Divider(thickness: 1)),

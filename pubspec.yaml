@@ -103,3 +103,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_native_splash:
+  color: "#564290"
+  image: assets/images/bazar_logo.png
+  android_12:
+    image: assets/images/bazar_logo.png
+    color: "#564290"

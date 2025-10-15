@@ -28,7 +28,7 @@ class SocialButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 14.0),
           child: Text(
             label,
-            style: const TextStyle(color: Colors.black),
+            style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
           ),
         ),
         style: OutlinedButton.styleFrom(

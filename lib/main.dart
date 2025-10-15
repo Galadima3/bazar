@@ -4,33 +4,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO: Work on Home Feature
 // 2. Work on Profile section
 
+// SharedPref Provider
+final sharedPrefProvider = Provider<SharedPreferences>(
+  (ref) => throw UnimplementedError(),
+);
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  final router = await AppRouter.create();
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   FlutterNativeSplash.remove();
-
-  runApp(ProviderScope(child: MyApp(router: router)));
+  runApp(
+    ProviderScope(
+      overrides: [sharedPrefProvider.overrideWithValue(sharedPreferences)],
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
-  final GoRouter router;
-  const MyApp({super.key, required this.router});
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       minTextAdapt: false,
@@ -41,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
           themeMode: ThemeMode.system,
-          routerConfig: widget.router,
+          routerConfig: router,
         );
       },
     );

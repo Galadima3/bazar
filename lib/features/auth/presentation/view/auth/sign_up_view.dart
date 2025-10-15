@@ -47,8 +47,11 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
 
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.white,
-        leading: const BackButton(color: Colors.black),
+        leading: BackButton(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black,
+        ),
       ),
       body: Form(
         key: _formKey,
@@ -150,24 +153,27 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                 onTap: () => Navigator.of(context).pop(),
               ),
 
-              
-
-             
-
               SizedBox(height: 100.h),
 
               /// Terms notice
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 24.0.h),
+                padding: EdgeInsets.symmetric(horizontal: 24.0.h),
                 child: Text.rich(
                   TextSpan(
                     text: 'By signing up, you agree to our ',
-                    style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                    style: TextStyle(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.grey,
+                      fontSize: 14.sp,
+                    ),
                     children: [
                       TextSpan(
                         text: 'Terms and Data Policy',
-                        style: const TextStyle(
-                          color: Color(0xff564290),
+                        style: TextStyle(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Color.fromARGB(255, 152, 128, 224)
+                              : Color(0xff564290),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
