@@ -6,9 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//TODO: Work on Home Feature
-// 2. Work on Profile section
-
 // SharedPref Provider
 final sharedPrefProvider = Provider<SharedPreferences>(
   (ref) => throw UnimplementedError(),
